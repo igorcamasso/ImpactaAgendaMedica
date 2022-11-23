@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.NetworkInformation;
 
@@ -22,16 +23,19 @@ namespace AgendaMedica.Models
         /// <summary>
         /// Horário do agendamento.
         /// </summary>
+        [DisplayName("Horário de agendamento")]
         public DateTimeOffset HorarioAgendamento { get; set; }
 
         /// <summary>
         /// Tempo da consulta.
         /// </summary>
+        [DisplayName("Tempo da consulta")]
         public TimeSpan TempoConsulta { get; set; }
 
         /// <summary>
         /// Horário final do atendimento previsto.
         /// </summary>
+        [DisplayName("Horário Final da Consulta")]
         public DateTimeOffset HorarioFinalAtendimento { 
             get { 
                 if (_horarioFinalAtendimento == null) 
