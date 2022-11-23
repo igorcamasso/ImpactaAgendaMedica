@@ -9,5 +9,7 @@ namespace AgendaMedica.Data
         { }
 
         public DbSet<Agendamento> Agendamentos { get; set; } = null!;
+
+        public DbSet<Contato> Contatos { get; set; } = null!;
     }
 }
