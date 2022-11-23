@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Net.NetworkInformation;
 
 namespace AgendaMedica.Models
 {
     public class Agendamento
     {
+        private DateTimeOffset? _horarioFinalAtendimento;
+
         public Agendamento()
         {
             Id = Guid.NewGuid();
@@ -29,6 +32,20 @@ namespace AgendaMedica.Models
         /// <summary>
         /// Horário final do atendimento previsto.
         /// </summary>
-        public DateTimeOffset HorarioFinalAtendimento { get; set; }
+        public DateTimeOffset HorarioFinalAtendimento { 
+            get { 
+                if (_horarioFinalAtendimento == null) 
+                    SetHorarioFinalAtendimento();
+                return _horarioFinalAtendimento!.Value; 
+            }
+            set => SetHorarioFinalAtendimento();
+        }
+
+        private void SetHorarioFinalAtendimento()
+        {
+            var novoHorario = HorarioAgendamento.Add(TempoConsulta);
+            if (_horarioFinalAtendimento == null || _horarioFinalAtendimento != novoHorario)
+                _horarioFinalAtendimento = novoHorario;
+        }
     }
 }

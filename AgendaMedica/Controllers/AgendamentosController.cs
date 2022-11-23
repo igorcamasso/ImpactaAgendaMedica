@@ -87,13 +87,10 @@ namespace AgendaMedica.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("HorarioAgendamento,TempoConsulta,HorarioFinalAtendimento")] Agendamento agendamento)
+        public async Task<IActionResult> Edit(Guid id, [Bind("HorarioAgendamento,TempoConsulta")] Agendamento agendamento)
         {
-            if (id != agendamento.Id)
-            {
-                return NotFound();
-            }
-
+            agendamento.Id = id;
+            
             if (ModelState.IsValid)
             {
                 try
